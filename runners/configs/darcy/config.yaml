@@ -1,0 +1,62 @@
+pde_type: darcy_flow
+model: non-wt-no-inj
+ntrain: 6000
+ntest: 500
+sub: 1  # sub-sampling rate
+num_workers: 2
+
+batch_size: 64
+epochs: 500
+modes: 12  # number of modes to keep after FFT
+width: 32
+depth_per_block: 1
+add_mlp: False 
+in_channels: 1
+out_channels: 1
+res: 421
+
+# Learning Rate Info
+lr: 1e-3
+step_size: 50  # for the step lr learning schedule
+gamma: 0.5  # used for Step lr learning Schedule
+lr_scheduler: step
+
+# Deq Solver Information
+solver: anderson  # (another one to use: broyden)
+eps: 0.001  # maximum absolute residual for solver
+solver_steps: 16
+pretrain_steps: 300
+pretrain_iter_steps: 1
+
+# Phantom Gradients
+use_pg: False  #Whter to use phantom training for training DEQs
+tau: 0.25  # damping factor in phantom gradients
+pg_steps: 1  #number of phantom gradient steps
+
+# Noise Related Information
+randomize_noise: False  # If to use random levels of noise or fixed noise during training
+noisy_data: False  # if true: load_data will load noisy data. 
+uniform_noise: False
+lower_bound: -0.0009765625  # 1./1024  # lower bound for uniform sampling;
+upper_bound: 0.0009765625  # 1./1024  # upper bound for uniform sampling;
+noise_level: 0  # maximum noise level in the observation: this is added during the Training time
+add_noise_to_inputs: False  # by default we will add noise to observations
+
+# Info Regarding storing and logging
+data_base_path: '/project_data/datasets/apokle_exp/deq-pde/PDE_datasets'
+model_base_path: '/project_data/datasets/apokle_exp/deq-pde/FNO_ckpts/darcy_flow' 
+# data_base_path: '/path/to/data'
+# model_base_path: '/path/to/dir/to/store/models'
+model_save_folder_path: models_${pde_type}/${model}/add_noise_to_input_${add_noise_to_inputs}/noise_level_${noise_level}
+ckpt: lr_${lr}_ep_${epochs}_ntrain_${ntrain}_${now:%Y-%m-%d_%H-%M-%S}  # prefix for the checkpoint name
+dataset: None  # name for the dataset to be used.
+test_dataset: None
+logging_freq: 100
+
+use_wandb: True
+train: True
+
+# Structured noise
+structured_noise: False  # whether to add random structured noise during training
+noise_magnitude: 1.0  # magnitude of the structured noise to be added during training
+seed: 0  # seed for exp
