@@ -1,4 +1,4 @@
-# Deep Equilibrium Based Neural Operators for Steady State PDEs
+# Deep Equilibrium Based Neural Operators for Steady State PDEs [NeurIPS 2023]
 
 ## Getting Started
 1. Create conda environment and install all packages from `requirements.txt`
