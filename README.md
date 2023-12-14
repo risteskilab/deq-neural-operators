@@ -26,10 +26,10 @@ Similar commands can be used to train other models. Refer to the following table
 
 | Model  | File  |
 |---|---|
-| FNO    | [run_non_wt_no_inj.sh](runners/scripts/darcy_flow/run_non_wt_no_inj.sh)|
-| FNO++  | [run_non_wt.sh](runners/scripts/darcy_flow/run_non_wt.sh) |
-| FNO-WT | [run_wt.sh](runners/scripts/darcy_flow/run_wt.sh) |
-| FNO-DEQ | [run_deq.sh](runners/scripts/darcy_flow/run_deq.sh) |
+| FNO    | [run_non_wt_no_inj.sh](runners/scripts/darcy/run_non_wt_no_inj.sh)|
+| FNO++  | [run_non_wt.sh](runners/scripts/darcy/run_non_wt.sh) |
+| FNO-WT | [run_wt.sh](runners/scripts/darcy/run_wt.sh) |
+| FNO-DEQ | [run_deq.sh](runners/scripts/darcy/run_deq.sh) |
 
 To evaluate with a pretrained checkpoint, set `train=False` in the script, and set `ckpt` to the pretrained checkpoint in config.
 
